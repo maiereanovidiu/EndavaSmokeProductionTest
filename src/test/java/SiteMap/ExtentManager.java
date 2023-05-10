@@ -2,22 +2,22 @@ package SiteMap;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentManager {
-    public static ExtentHtmlReporter htmlReporter;
+    public static ExtentSparkReporter sparkReporter;
     public static ExtentReports extent;
     public static ExtentTest test;
 
     public static void setExtent() {
-        htmlReporter= new ExtentHtmlReporter(System.getProperty("user.dir")+"\\reports\\"+"TestReport.html");
-        htmlReporter.config().setDocumentTitle("Automation Test Report");
-        htmlReporter.config().setReportName("OrangeHRM Test Automation Report");
-        htmlReporter.config().setTheme(Theme.DARK);
+        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"\\reports\\"+"TestReport.html");
+        sparkReporter.config().setDocumentTitle("Automation Test Report");
+        sparkReporter.config().setReportName("OrangeHRM Test Automation Report");
+        sparkReporter.config().setTheme(Theme.DARK);
 
         extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
+        extent.attachReporter(sparkReporter);
 
         extent.setSystemInfo("HostName", "Endava");
         extent.setSystemInfo("ProjectName", "Endava");

@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -38,6 +40,8 @@ public class DriverConfig {
             options.addArguments("--headless");
             options.addArguments("--window-size=1920,1080");
             options.addArguments("--no-sandbox");
+            options.addArguments("start-maximized");
+            options.addArguments("incognito");
             options.addArguments("--disable-extensions");
             options.addArguments("--dns-prefetch-disable");
             options.addArguments("--disable-gpu");
@@ -49,11 +53,20 @@ public class DriverConfig {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("--headless");
             options.addArguments("--start-maximized");
+            options.addArguments("--window-size=1920,1080");
             options.addArguments("--disable-extensions");
             driver = new EdgeDriver(options);
+        } else if (browserName.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
+            options.addArguments("--start-maximized");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--disable-extensions");
+            driver = new FirefoxDriver(options);
         }
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         return driver;
     }
 
